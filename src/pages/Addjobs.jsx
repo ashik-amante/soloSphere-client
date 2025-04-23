@@ -15,7 +15,7 @@ const AddJob = () => {
         e.preventDefault()
         const form = e.target
         const job_title = form.job_title.value
-        const email = form.email.value
+        const email = user?.email
         const deadline = startDate
         const category = form.category.value
         const min_price = parseFloat(form.min_price.value)

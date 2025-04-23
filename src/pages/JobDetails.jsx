@@ -7,11 +7,12 @@ import axios from "axios";
 import toast from 'react-hot-toast'
 
 const JobDetails = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  
   const {user} = useContext(AuthContext)
   const job = useLoaderData()
   console.log(job);
   const {job_title, category,description,min_price,max_price,_id,buyer,deadline} = job
+  const [startDate, setStartDate] = useState(new Date(deadline));
 
   const handleFormSubmission = async e=>{
     
@@ -94,6 +95,7 @@ const JobDetails = () => {
                 <input
                   id='price'
                   type='text'
+                  required
                   name='price'
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
@@ -120,6 +122,7 @@ const JobDetails = () => {
                 <input
                   id='comment'
                   name='comment'
+                  required
                   type='text'
                   className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
                 />
@@ -128,7 +131,8 @@ const JobDetails = () => {
                 <label className='text-gray-700'>Deadline</label>
   
                 {/* Date Picker Input Field */}
-                <DatePicker className="border p-2 rounded" selected={startDate} onChange={(date) => setStartDate(date)} />
+                <DatePicker className="border p-2 rounded" selected={startDate} 
+                onChange={(date) => setStartDate(date)} />
               </div>
             </div>
   
