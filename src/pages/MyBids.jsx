@@ -17,6 +17,12 @@ const MyBids = () => {
   }, [user])
   console.log(bids);
 
+  const handleStatus = async (id)=>{
+    const {data} = await axios.patch(`${import.meta.env.VITE_API_URL}/bid/${id}`, {status: 'Complete'})
+    console.log(data);
+    getData()
+  }
+
 
   return (
     <section className='container px-4 mx-auto pt-12'>
@@ -145,7 +151,7 @@ const MyBids = () => {
 
                         </td>
                         <td className='px-4 py-4 text-sm whitespace-nowrap'>
-                          <button
+                          <button onClick={()=>{handleStatus(bid._id)}}
                             title='Mark Complete'
                             disabled={bid.status !== 'In Progress'}
                             className='text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none disabled:cursor-not-allowed'
